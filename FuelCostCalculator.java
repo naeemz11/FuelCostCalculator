@@ -15,8 +15,7 @@ public class FuelCostCalculator {
         final double GAS_PRICE = 3.75;
 
         //establishes user input 
-        Scanner input = new Scanner(System.in);
-        
+        Scanner input = new Scanner(System.in);    
         
         //do-while loop that asks the user to restart the program
       //Requirement 3 - Another Loop
@@ -101,47 +100,33 @@ public class FuelCostCalculator {
 	  	        {	
 	  	        	// miles per gallon
 	  	        	System.out.println("How many miles are you going to drive?"); 
-	  	        //	 distance = input.nextInt();
 	  	        	 distance = input.nextDouble();
 	  	        	
 	  	        	while ((!(distance > 1))) //input validation
 	  	        	{
 	  	        		
 	  	        		System.out.println("Error! Please enter a number above 0");
-	  	        	//	distance = input.nextInt();
+	  	        	
 	  	        		 distance = input.nextDouble();
 	  	        	}//end of while-distance validation
 	  	        	
 	  	        	System.out.println("Whats your car's MPG?");
-	  	        //	mpg = input.nextInt();
 	  	        	mpg = input.nextDouble();
 	  	        	
 	  	        	while ((!(mpg > 1))) //input validation
 	  	        	{
 	  	        		System.out.println("Error! Please a number above 0");
-	  	        //		mpg = input.nextInt();
+	  	       
 	  	        		mpg = input.nextDouble();
 	  	        	}//end of while-mpg validation
 	  	               
 	  	        	//calculation formula
 	  	        	//Fuel cost = (Distance / Consumption) × Cost per gallon
 	  	        	double fuelCost = (distance/mpg) * GAS_PRICE;
-	  	            double fuelNeeded = (distance/mpg);
-	  	            
-	  	          //Requirement 4 - Abbreviated Incriminator 
-	  	            //prints "." 3 times with delay of 1000 milliseconds (1 second) each print and creates a loading promt
-	  	        	System.out.print("Calculating");
-	  			 	for(i = 0; i < 3; i++)
-	  			 	{
-	  			 		System.out.print(".");
-		
-	  			 		try {
-	  						Thread.sleep(1000);
-	  					} catch (InterruptedException e) {
-	  						e.printStackTrace();
-	  					}		
-	  			 	}//end of counter for loop
-	  			 	System.out.println("");
+	  	            double fuelNeeded = (distance/mpg);  
+	  	    
+	  	          //loading promt method  
+	  	          loadingMethod();
 	  	            
 	  	          //generates random #numbers of users
 	  	        	int random = (int)(Math.random() * 100 + 80);
@@ -152,13 +137,12 @@ public class FuelCostCalculator {
 	  	        	System.out.println("It will cost:");
 	  	        	System.out.printf("$%.2f \n", fuelCost);
 	  	        	
-	  	        	System.out.println("\nThe number of users have used this app: " + random);
+	  	        	System.out.println("\nThe number of users have used this app: " + random + "\n");
 	  	        } 
 	  	        else if (userInput == 2) 
 	  	        {
 	  	        	// km per liter
 	  	        	System.out.println("How many kilometers are you going to drive?"); 
-	  	        //  distance = input.nextInt();
 	  	        	distance = input.nextDouble();
 		  	          while ((!(distance > 1))) //input validation
 		  	        	{
@@ -186,7 +170,7 @@ public class FuelCostCalculator {
 	  	        	double fuelNeeded = (distance /(mpg * 0.425144)); // _liters
 	  	        	
 	  	        //Requirement 4 - Abbreviated Incriminator 
-	  	        	System.out.print("Calculating");
+	  	        	/*System.out.print("Calculating");
 	  			 	for(i = 0; i < 3; i++)
 	  			 	{
 	  			 		System.out.print(".");	
@@ -197,7 +181,10 @@ public class FuelCostCalculator {
 	  						e.printStackTrace();
 	  					} 		
 	  			 	}
-	  			 	System.out.println("");
+	  			 	System.out.println(""); */
+	  	        	
+	  	        	//loading promt method
+	  	        	loadingMethod();
 	  	        
 	  	        	int random = (int)(Math.random() * 500 + 50); //generates random number to display #num of users
 	  	        
@@ -206,7 +193,7 @@ public class FuelCostCalculator {
 	  	        	System.out.println("It will cost:");
 	  	        	System.out.printf("$%.2f \n", fuelCost);
 	  	        	
-	  	        	System.out.println("\nThe number of users have used this app: " + random);
+	  	        	System.out.println("\nThe number of users have used this app: " + random + "\n");
 	  	        } 
 	  	        else //input validation 
 	  	        {
@@ -217,21 +204,34 @@ public class FuelCostCalculator {
 	        	 resetInput = JOptionPane.showConfirmDialog(null, "Would you like to start a new calculation?");
 	        	 
 	        	 
-	        	//System.out.println("press 1 to start a new calculation or press 2 to exit");
-	        	//resetInput = input.nextInt();
-		        /*while (!(resetInput == 0) && (!(resetInput == 2)))//input validation
-		        {
-		        	
-		        	System.out.println("Please input '1' to continue or '2' exit");
-		        	resetInput = input.nextInt();
-		        }*/
 		       
 	        	  
         } while(resetInput == 0);//end of do-while loop 
         
         //program closing message
-        System.out.println("\nThank you for using Fuel Cost Calculator!"); 
+        System.out.println("-----------------------------------------");
+        System.out.println("Thank you for using Fuel Cost Calculator!"); 
+        System.out.println("-----------------------------------------");
 
-	}
-
-}
+	}//end of main
+	
+ //Requirement 5 - Method
+ //Requirement 4 - Abbreviated Incriminator 
+	//A method that displays "Calculating..." as a loading promt before displaying the result of the calculation 
+	static void loadingMethod() {
+		System.out.print("Calculating");
+	 	for(i = 0; i < 3; i++)
+	 	{
+	 		System.out.print(".");
+	 		
+	 		try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+	 		
+	 	}
+	 	System.out.println("");
+	}//end of loadingMethod
+		
+}//end of class
